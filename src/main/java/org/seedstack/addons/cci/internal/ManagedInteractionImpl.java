@@ -1,15 +1,14 @@
-/**
- * Copyright (c) 2013-2016, The SeedStack authors <http://seedstack.org>
+/*
+ * Copyright © 2013-2017, The SeedStack authors <http://seedstack.org>
  *
  * This Source Code Form is subject to the terms of the Mozilla Public
  * License, v. 2.0. If a copy of the MPL was not distributed with this
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
-/*
- * Creation : 3 juin 2016
- */
 
 package org.seedstack.addons.cci.internal;
+
+import static com.google.common.base.Preconditions.checkState;
 
 import com.google.inject.assistedinject.Assisted;
 import java.util.function.Function;
@@ -40,6 +39,8 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
     public boolean execute(InteractionSpec ispec, I input, O output) {
         return doWithInteraction(
                 (Throwing.Function<Interaction, Boolean, ResourceException>) interaction -> {
+                    checkInput(input);
+                    checkOutput(output);
                     boolean result = interaction.execute(ispec, input, output);
                     warnings = interaction.getWarnings();
                     return result;
@@ -51,6 +52,7 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
     public O execute(InteractionSpec ispec, I input) {
         return doWithInteraction(
                 (Throwing.Function<Interaction, O, ResourceException>) interaction -> {
+                    checkInput(input);
                     O output = (O) interaction.execute(ispec, input);
                     warnings = interaction.getWarnings();
                     return output;
@@ -67,8 +69,16 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
         warnings = null;
     }
 
-    public InteractionDef<I, O> getInteractionDef() {
-        return interactionDef;
+    private void checkInput(I input) {
+        checkState(interactionDef.getInputClass().isAssignableFrom(input.getClass()),
+                "The input object for interaction " + interactionDef.getName() + " must be assignable to "
+                        + interactionDef.getInputClass().getName());
+    }
+
+    private void checkOutput(O output) {
+        checkState(interactionDef.getOutputClass().isAssignableFrom(output.getClass()),
+                "The output object for interaction " + interactionDef.getName() + " must be assignable to "
+                        + interactionDef.getOutputClass().getName());
     }
 
     private <R> R doWithInteraction(Function<Interaction, R> interactionFunction) {
