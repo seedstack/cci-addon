@@ -1,3 +1,3 @@
-# Version 1.0.0 (2017-11-30)
+# Version 1.0.0 (2017-11-29)
 
-* [new] Initial version. 
+* [new] Initial release. 
