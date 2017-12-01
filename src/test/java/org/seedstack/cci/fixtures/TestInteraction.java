@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.fixtures;
+package org.seedstack.cci.fixtures;
 
 import static org.assertj.core.api.Assertions.assertThat;
 

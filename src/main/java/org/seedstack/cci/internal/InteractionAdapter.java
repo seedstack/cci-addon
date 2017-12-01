@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.internal;
+package org.seedstack.cci.internal;
 
 import com.google.inject.assistedinject.Assisted;
 import javax.inject.Inject;
@@ -16,7 +16,7 @@ import javax.resource.cci.Interaction;
 import javax.resource.cci.InteractionSpec;
 import javax.resource.cci.Record;
 import javax.resource.cci.ResourceWarning;
-import org.seedstack.addons.cci.ManagedInteraction;
+import org.seedstack.cci.ManagedInteraction;
 
 public class InteractionAdapter implements Interaction {
     private final ManagedInteraction<Record, Record> managedInteraction;

@@ -9,7 +9,7 @@
 ims:
   connectionFactories:
     test:
-      vendorClass: org.seedstack.addons.cci.fixtures.TestConnectionFactory
+      vendorClass: org.seedstack.cci.fixtures.TestConnectionFactory
       properties:
         hostName: localhost
         port: 2564

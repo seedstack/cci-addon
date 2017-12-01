@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.internal;
+package org.seedstack.cci.internal;
 
 import com.google.common.base.Strings;
 import com.google.common.collect.Lists;
@@ -23,9 +23,9 @@ import javax.resource.cci.ConnectionFactory;
 import javax.resource.cci.Record;
 import jodd.bean.BeanUtil;
 import jodd.bean.BeanUtilBean;
-import org.seedstack.addons.cci.CciConfig;
-import org.seedstack.addons.cci.InteractionInput;
-import org.seedstack.addons.cci.InteractionOutput;
+import org.seedstack.cci.CciConfig;
+import org.seedstack.cci.InteractionInput;
+import org.seedstack.cci.InteractionOutput;
 import org.seedstack.seed.SeedException;
 import org.seedstack.seed.core.internal.AbstractSeedPlugin;
 import org.seedstack.seed.core.internal.jndi.JndiPlugin;

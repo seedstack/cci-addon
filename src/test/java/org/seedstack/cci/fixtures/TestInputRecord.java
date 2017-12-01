@@ -6,13 +6,13 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.fixtures;
+package org.seedstack.cci.fixtures;
 
 import javax.resource.cci.Record;
-import org.seedstack.addons.cci.InteractionOutput;
+import org.seedstack.cci.InteractionInput;
 
-@InteractionOutput("someInteraction")
-public class TestOutputRecord implements Record {
+@InteractionInput("someInteraction")
+public class TestInputRecord implements Record {
     @Override
     public String getRecordName() {
         return null;

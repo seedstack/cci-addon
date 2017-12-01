@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci;
+package org.seedstack.cci;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;
@@ -20,9 +20,9 @@ import java.lang.annotation.Target;
 @Documented
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ElementType.TYPE})
-public @interface InteractionOutput {
+public @interface InteractionInput {
     /**
-     * The name of the transaction the annotated class serves as output.
+     * The name of the transaction the annotated class serves as input.
      *
      * @return the transaction name.
      */

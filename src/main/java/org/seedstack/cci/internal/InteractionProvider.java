@@ -6,24 +6,24 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.internal;
+package org.seedstack.cci.internal;
 
 import javax.inject.Inject;
 import javax.inject.Provider;
+import javax.resource.cci.Interaction;
 import javax.resource.cci.Record;
-import org.seedstack.addons.cci.ManagedInteraction;
 
-class ManagedInteractionProvider implements Provider<ManagedInteraction> {
+class InteractionProvider implements Provider<Interaction> {
     private final InteractionDef<Record, Record> interactionDef;
     @Inject
     private CciFactory cciFactory;
 
-    ManagedInteractionProvider(InteractionDef<Record, Record> interactionDef) {
+    InteractionProvider(InteractionDef<Record, Record> interactionDef) {
         this.interactionDef = interactionDef;
     }
 
     @Override
-    public ManagedInteraction<Record, Record> get() {
-        return cciFactory.createManagedInteractionImpl(interactionDef);
+    public Interaction get() {
+        return cciFactory.createInteractionAdapter(interactionDef);
     }
 }

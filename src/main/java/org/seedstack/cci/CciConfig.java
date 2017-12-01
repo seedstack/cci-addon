@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci;
+package org.seedstack.cci;
 
 import com.google.common.base.Strings;
 import java.util.Collections;

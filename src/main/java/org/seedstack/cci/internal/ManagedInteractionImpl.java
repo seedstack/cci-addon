@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.internal;
+package org.seedstack.cci.internal;
 
 import static com.google.common.base.Preconditions.checkState;
 
@@ -19,7 +19,7 @@ import javax.resource.cci.Interaction;
 import javax.resource.cci.InteractionSpec;
 import javax.resource.cci.Record;
 import javax.resource.cci.ResourceWarning;
-import org.seedstack.addons.cci.ManagedInteraction;
+import org.seedstack.cci.ManagedInteraction;
 import org.seedstack.seed.SeedException;
 import org.seedstack.shed.exception.Throwing;
 import org.slf4j.Logger;

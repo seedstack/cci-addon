@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci;
+package org.seedstack.cci;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,9 +14,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.resource.cci.Interaction;
 import org.junit.Test;
-import org.seedstack.addons.cci.fixtures.TestInputRecord;
-import org.seedstack.addons.cci.fixtures.TestInteractionSpec;
-import org.seedstack.addons.cci.fixtures.TestOutputRecord;
+import org.seedstack.cci.fixtures.TestInputRecord;
+import org.seedstack.cci.fixtures.TestInteractionSpec;
+import org.seedstack.cci.fixtures.TestOutputRecord;
 import org.seedstack.seed.it.AbstractSeedIT;
 
 public class CciIT extends AbstractSeedIT {

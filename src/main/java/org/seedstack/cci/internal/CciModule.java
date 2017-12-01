@@ -6,7 +6,7 @@
  * file, You can obtain one at http://mozilla.org/MPL/2.0/.
  */
 
-package org.seedstack.addons.cci.internal;
+package org.seedstack.cci.internal;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.TypeLiteral;
@@ -16,7 +16,7 @@ import com.google.inject.util.Types;
 import java.util.Map;
 import javax.resource.cci.Interaction;
 import javax.resource.cci.Record;
-import org.seedstack.addons.cci.ManagedInteraction;
+import org.seedstack.cci.ManagedInteraction;
 
 class CciModule extends AbstractModule {
     private final Map<String, InteractionDef<Record, Record>> interactionsDefs;
