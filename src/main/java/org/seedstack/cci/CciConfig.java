@@ -16,7 +16,7 @@ import java.util.Properties;
 import javax.resource.cci.ConnectionFactory;
 import org.seedstack.coffig.Config;
 
-@Config("ims")
+@Config("cci")
 public class CciConfig {
     private Map<String, ConnectionFactoryConfig> connectionFactories = new HashMap<>();
 

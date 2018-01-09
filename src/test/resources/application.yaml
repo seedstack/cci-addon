@@ -6,7 +6,7 @@
 # file, You can obtain one at http://mozilla.org/MPL/2.0/.
 #
 
-ims:
+cci:
   connectionFactories:
     test:
       vendorClass: org.seedstack.cci.fixtures.TestConnectionFactory
