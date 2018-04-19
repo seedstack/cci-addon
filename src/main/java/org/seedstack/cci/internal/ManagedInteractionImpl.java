@@ -87,7 +87,7 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
 
         try {
             cxn = interactionDef.getConnectionFactory().getConnection();
-            LOGGER.debug("Retrieved connection {} for interaction {}", cxn.hashCode(), interactionDef.getName());
+            LOGGER.debug("Retrieved connection {} for interaction {}", cxn.toString(), interactionDef.getName());
             ixn = cxn.createInteraction();
             LOGGER.debug("Executing interaction {}", interactionDef.getName());
             return interactionFunction.apply(ixn);
@@ -98,7 +98,7 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
         } finally {
             if (ixn != null) {
                 try {
-                    LOGGER.debug("Closing interaction: ", cxn.hashCode());
+                    LOGGER.debug("Closing interaction {}", interactionDef.getName());
                     ixn.close();
                 } catch (ResourceException e) {
                     LOGGER.error("Exception while closing interaction : ", e);
@@ -106,7 +106,7 @@ public class ManagedInteractionImpl<I extends Record, O extends Record> implemen
             }
             if (cxn != null) {
                 try {
-                    LOGGER.debug("Closing connection: ", cxn.hashCode());
+                    LOGGER.debug("Closing connection {}", cxn.toString());
                     cxn.close();
                 } catch (ResourceException e) {
                     LOGGER.error("Exception while closing connection", e);
