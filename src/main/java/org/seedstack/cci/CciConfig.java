@@ -31,7 +31,7 @@ public class CciConfig {
 
     public static class ConnectionFactoryConfig {
         private String jndiName;
-        private String jndiContext;
+        private String jndiContext = "default";
         private Class<? extends ConnectionFactory> vendorClass;
         private Properties properties = new Properties();
 

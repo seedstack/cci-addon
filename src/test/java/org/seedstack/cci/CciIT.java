@@ -12,11 +12,14 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import javax.resource.cci.ConnectionFactory;
 import javax.resource.cci.Interaction;
 import org.junit.Test;
+import org.seedstack.cci.fixtures.JndiConnectionFactory;
 import org.seedstack.cci.fixtures.TestInputRecord;
 import org.seedstack.cci.fixtures.TestInteractionSpec;
 import org.seedstack.cci.fixtures.TestOutputRecord;
+import org.seedstack.cci.fixtures.VendorConnectionFactory;
 import org.seedstack.seed.it.AbstractSeedIT;
 
 public class CciIT extends AbstractSeedIT {
@@ -28,10 +31,27 @@ public class CciIT extends AbstractSeedIT {
     @Named("someInteraction")
     private Interaction someLegacyInteraction;
 
+    @Inject
+    @Named("vendorCf")
+    private ConnectionFactory vendorConnectionFactory;
+
+    @Inject
+    @Named("jndiCf")
+    private ConnectionFactory jndiConnectionFactory;
+
     @Test
     public void interactionIsInjectable() throws Exception {
         assertThat(someInteraction).isNotNull();
         assertThat(someLegacyInteraction).isNotNull();
+    }
+
+    @Test
+    public void connectionFactoryIsInjectable() throws Exception {
+        assertThat(vendorConnectionFactory).isInstanceOf(VendorConnectionFactory.class);
+        assertThat(((VendorConnectionFactory) vendorConnectionFactory).getHostName()).isEqualTo("localhost");
+        assertThat(((VendorConnectionFactory) vendorConnectionFactory).getPort()).isEqualTo(2564);
+        assertThat(((VendorConnectionFactory) vendorConnectionFactory).getDataStoreName()).isEqualTo("test");
+        assertThat(jndiConnectionFactory).isInstanceOf(JndiConnectionFactory.class);
     }
 
     @Test

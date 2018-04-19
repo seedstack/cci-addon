@@ -29,6 +29,7 @@ import org.seedstack.cci.InteractionOutput;
 import org.seedstack.seed.SeedException;
 import org.seedstack.seed.core.internal.AbstractSeedPlugin;
 import org.seedstack.seed.core.internal.jndi.JndiPlugin;
+import org.seedstack.shed.reflect.Classes;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -101,7 +102,7 @@ public class CciPlugin extends AbstractSeedPlugin {
     private Object createVendorConnectionFactory(String cfName, Class<? extends ConnectionFactory> cfClass,
             Properties properties) {
         try {
-            ConnectionFactory connectionFactory = cfClass.newInstance();
+            ConnectionFactory connectionFactory = Classes.instantiateDefault(cfClass);
             setProperties(connectionFactory, properties);
             return connectionFactory;
         } catch (Exception e) {
@@ -125,7 +126,14 @@ public class CciPlugin extends AbstractSeedPlugin {
                         .put("connectionFactoryName", cfName);
             }
 
-            return context.lookup(jndiName);
+            Object lookup = context.lookup(jndiName);
+            if (lookup == null) {
+                throw SeedException.createNew(CciErrorCode.NO_JNDI_CONNECTION_FACTORY_AVAILABLE)
+                        .put("contextName", jndiContext)
+                        .put("connectionFactoryName", cfName);
+            } else {
+                return lookup;
+            }
         } catch (NamingException e) {
             throw SeedException.wrap(e, CciErrorCode.JNDI_LOOKUP_ERROR)
                     .put("connectionFactoryName", cfName);
@@ -222,7 +230,7 @@ public class CciPlugin extends AbstractSeedPlugin {
 
     @Override
     public Object nativeUnitModule() {
-        return new CciModule(interactionsDefs);
+        return new CciModule(connectionFactories, interactionsDefs);
     }
 
 }

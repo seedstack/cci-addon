@@ -1,5 +1,6 @@
-# Version 1.0.2 (2018-04-28)
+# Version 1.1.0 (2018-04-28)
 
+* [new] Made connection factories injectable for low-level usage.
 * [chg] Improved logging in DEBUG level.
 * [brk] Rename wrong configuration prefix from `ims` to `cci`.
 

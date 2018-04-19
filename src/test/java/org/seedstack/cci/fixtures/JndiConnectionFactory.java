@@ -17,11 +17,7 @@ import javax.resource.cci.ConnectionSpec;
 import javax.resource.cci.RecordFactory;
 import javax.resource.cci.ResourceAdapterMetaData;
 
-public class TestConnectionFactory implements ConnectionFactory {
-    private String hostName;
-    private int port;
-    private String dataStoreName;
-
+public class JndiConnectionFactory implements ConnectionFactory {
     @Override
     public Connection getConnection() throws ResourceException {
         return new TestConnection();
@@ -50,29 +46,5 @@ public class TestConnectionFactory implements ConnectionFactory {
     @Override
     public void setReference(Reference reference) {
 
-    }
-
-    public String getHostName() {
-        return hostName;
-    }
-
-    public void setHostName(String hostName) {
-        this.hostName = hostName;
-    }
-
-    public int getPort() {
-        return port;
-    }
-
-    public void setPort(int port) {
-        this.port = port;
-    }
-
-    public String getDataStoreName() {
-        return dataStoreName;
-    }
-
-    public void setDataStoreName(String dataStoreName) {
-        this.dataStoreName = dataStoreName;
     }
 }

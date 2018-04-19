@@ -11,7 +11,7 @@ package org.seedstack.cci.fixtures;
 import javax.resource.cci.Record;
 import org.seedstack.cci.InteractionOutput;
 
-@InteractionOutput("someInteraction")
+@InteractionOutput(value = "someInteraction", connectionFactory = "vendorCf")
 public class TestOutputRecord implements Record {
     @Override
     public String getRecordName() {

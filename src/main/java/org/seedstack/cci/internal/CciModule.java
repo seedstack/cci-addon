@@ -14,14 +14,18 @@ import com.google.inject.assistedinject.FactoryModuleBuilder;
 import com.google.inject.name.Names;
 import com.google.inject.util.Types;
 import java.util.Map;
+import javax.resource.cci.ConnectionFactory;
 import javax.resource.cci.Interaction;
 import javax.resource.cci.Record;
 import org.seedstack.cci.ManagedInteraction;
 
 class CciModule extends AbstractModule {
+    private final Map<String, ConnectionFactory> connectionFactories;
     private final Map<String, InteractionDef<Record, Record>> interactionsDefs;
 
-    CciModule(Map<String, InteractionDef<Record, Record>> interactionsDefs) {
+    CciModule(Map<String, ConnectionFactory> connectionFactories,
+            Map<String, InteractionDef<Record, Record>> interactionsDefs) {
+        this.connectionFactories = connectionFactories;
         this.interactionsDefs = interactionsDefs;
     }
 
@@ -29,6 +33,10 @@ class CciModule extends AbstractModule {
     @SuppressWarnings("unchecked")
     protected void configure() {
         install(new FactoryModuleBuilder().build(CciFactory.class));
+
+        for (Map.Entry<String, ConnectionFactory> entry : connectionFactories.entrySet()) {
+            bind(ConnectionFactory.class).annotatedWith(Names.named(entry.getKey())).toInstance(entry.getValue());
+        }
 
         for (InteractionDef<Record, Record> interactionDef : interactionsDefs.values()) {
             bind((TypeLiteral<ManagedInteraction>) TypeLiteral.get(
