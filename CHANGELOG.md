@@ -1,4 +1,4 @@
-# Version 1.1.0 (2018-04-28)
+# Version 1.1.0 (2018-05-05)
 
 * [new] Made connection factories injectable for low-level usage.
 * [chg] Improved logging in DEBUG level.

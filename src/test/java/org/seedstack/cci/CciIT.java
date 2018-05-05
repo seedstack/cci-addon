@@ -15,14 +15,16 @@ import javax.inject.Named;
 import javax.resource.cci.ConnectionFactory;
 import javax.resource.cci.Interaction;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 import org.seedstack.cci.fixtures.JndiConnectionFactory;
 import org.seedstack.cci.fixtures.TestInputRecord;
 import org.seedstack.cci.fixtures.TestInteractionSpec;
 import org.seedstack.cci.fixtures.TestOutputRecord;
 import org.seedstack.cci.fixtures.VendorConnectionFactory;
-import org.seedstack.seed.it.AbstractSeedIT;
+import org.seedstack.seed.testing.junit4.internal.JUnit4Runner;
 
-public class CciIT extends AbstractSeedIT {
+@RunWith(JUnit4Runner.class)
+public class CciIT {
     @Inject
     @Named("someInteraction")
     private ManagedInteraction<TestInputRecord, TestOutputRecord> someInteraction;
